@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>workout-detail</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../CSS/list-workout.css">
+    <link rel="stylesheet" href="../CSS/workout-detail.css">
+</head>
+<body>
+<div class="countdown-to-start"><p></p></div>
+<div class="process">
+    <div class="process-bar">
+        <div class="completed-process"></div>
+    </div>
+</div>
+<div class="exercise">
+    <div class="exercise-content">
+        <div class="exercise-name">glut kick back left</div>
+        <div class="exercise-length">00:05</div>
+    </div>
+    <div class="exercise-gif">
+        <img src="http://d205bpvrqc9yn1.cloudfront.net/0001.gif"
+             alt="glut kick back left">
+    </div>
+    <div class="exercise-process">
+        <div class="ex-process-buttons">
+            <div class="pause-this-ex">
+                <i class="fa-solid fa-pause"></i>
+            </div>
+            <div class="play-this-ex hide">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div class="skip-this-ex">
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+        </div>
+        <div class="ex-process-bar">
+            <div class="ex-completed-process"></div>
+        </div>
+    </div>
+</div>
+<div class="rest">
+    <div class="rest-content">
+        <div class="rest-name">take a rest</div>
+        <div class="rest-length">00:10</div>
+    </div>
+    <div class="nxt-exercise">
+        <img src="http://d205bpvrqc9yn1.cloudfront.net/0001.gif"
+             alt="">
+        <div class="nxt-ex-info">
+            <p class="name">crunch</p>
+            <p class="length">x 15</p>
+        </div>
+    </div>
+    <div class="rest-process">
+        <div class="rest-process-buttons">
+            <div class="more-20s-rest">
+                <button>+20s</button>
+            </div>
+            <div class="skip-this-rest">
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+        </div>
+        <div class="rest-process-bar">
+            <div class="rest-completed-process"></div>
+        </div>
+    </div>
+</div>
+<div class="finished-workout">
+    <div class="content">
+        <div class="title">you rock!</div>
+        <div class="detail">
+            <div class="completed-exercises">
+                <p class="data">7</p>
+                <p>exercises</p>
+            </div>
+            <div class="burned-calories">
+                <p class="data">100</p>
+                <p>calories</p>
+            </div>
+            <div class="spent-minutes">
+                <p class="data">00:03</p>
+                <p>minutes</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="do-it-again">do it again</button>
+            <button class="back-to-workout-page">exit</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/6743dd3fb9.js" crossorigin="anonymous"></script>
+<script src="../JS/workout-detail.js"></script>
+<script src="../Data/workout-data.js"></script>
+</body>
+</html>

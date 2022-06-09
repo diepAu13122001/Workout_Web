@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link
+            rel="shortcut icon"
+            type="image/x-icon"
+    />
+    <title>Workout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://kit.fontawesome.com/e0796720d0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="../JS/main.js"></script>
+    <script src="../JS/index.js"></script>
+    <link rel="stylesheet" href="../CSS/indexx.css">
+    <link rel="stylesheet" href="../CSS/cart-index.css">
+    <link rel="stylesheet" href="../CSS/workout.css">
+</head>
+<body>
+<!-- ======== sidebar-nav start =========== -->
+<aside class="sidebar-nav-wrapper text-center">
+    <div class="navbar-logo me-2">
+        <h5 class="fs-4" style="font-family: Corbel,sans-serif"><img
+                src="https://iweb.tatthanh.com.vn/pic/3/blog/images/image(751).png" style="width: 90px; height: 60px;"
+                alt="Nnail">LDGrils</h5>
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+            <span class="divider"><hr/></span>
+            <li class="nav-item nav-home">
+                <a
+                        href="../index.html"
+                >
+                    <i class="material-icons text-danger">home</i>
+                    <span class="text ms-3 ms-4"> Trang chủ</span>
+                </a>
+            </li>
+            <span class="divider"><hr/></span>
+            <li class="nav-item nav-home">
+                <a
+                        href="eating.html"
+                >
+                    <i class="bi bi-heart-pulse text-danger"></i>
+                    <span class="text mx-3 ms-4">Workout</span>
+                </a>
+            </li>
+            <span class="divider"><hr/></span>
+            <li class="nav-item nav-home">
+                <a
+                        href="eating.html"
+                >
+                    <i class="fa fa-cutlery text-danger"></i>
+                    <span class="text mx-3 ms-4">Eating</span>
+                </a>
+            </li>
+            <span class="divider"><hr/></span>
+            <li class="nav-item nav-home">
+                <a
+                        href="../HTML/about-us.html"
+                >
+                    <i class="bi bi-person-hearts text-danger"></i>
+                    <span class="text mx-3 ms-4">About Us</span>
+                </a>
+            </li>
+            <span class="divider"><hr/></span>
+            <li class="nav-item nav-home">
+                <a
+                        href="../ChatBox/index.html"
+                >
+                    <i class="bi bi-chat-heart-fill text-danger"></i>
+                    <span class="text mx-3 ms-4">Chatbox</span>
+                </a>
+            </li>
+            <span class="divider"><hr/></span>
+            </li>
+            <li class="nav-item nav-home">
+                <a
+                        href="../Account/index.html"
+                >
+                    <i class="bi bi-person-bounding-box text-danger"></i>
+                    <span class="text mx-3 ms-4">Tài khoản</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="main-wrapper">
+    <header class="header position-fixed" style="top: 0px; z-index: 1000;box-shadow: 3px 1px 3px 1px  #ebebd5;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-6">
+                    <div class="header-left d-flex align-items-center">
+                        <div class="menu-toggle-btn mr-20">
+                            <button
+                                    id="menu-toggle"
+                                    class="main-btn bg-danger-500 btn-hover"
+                            >
+                                <i class="material-icons text-white">subject</i>
+                            </button>
+                        </div>
+                        <div class="header-search d-none d-md-flex">
+                            <form action="#">
+                                <label>
+                                    <input type="text" placeholder="Search..."/>
+                                </label>
+                                <button><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-6">
+                    <div class="header-right">
+                        <!-- profile start -->
+                        <div class="profile-box ml-15">
+                            <button
+                                    class="dropdown-toggle bg-transparent border-0"
+                                    type="button"
+                                    id="profile"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                            >
+                                <div class="profile-info">
+                                    <div class="info">
+                                        <h6>Daisy Thi</h6>
+                                        <div class="image">
+                                            <img
+                                                    src="https://vuonmattroi.com/wp-content/uploads/2021/05/cuc-hoa-mi-co-ve-dep-mong-manh-yeu-ot-nhung-suc-song-manh-liet.jpg"
+                                                    alt=""
+                                            />
+                                            <span class="status"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="lni lni-chevron-down"></i>
+                            </button>
+                            <ul
+                                    class="dropdown-menu dropdown-menu-end"
+                                    aria-labelledby="profile"
+                            >
+                                <li>
+                                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
+                                </li>
+                                <li>
+                                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="content" style="margin-top:120px">
+        <div class="first-part">
+            <div class="today-data">
+                <!-- emotion or getting targets' status :)-->
+                <div class="box process">
+                    <p class="today-target">today target</p>
+                    <div class="outer">
+                        <div class="inner">
+                            <div id="number"></div>
+                        </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                        <defs>
+                            <linearGradient id="GradientColor">
+                                <stop offset="0%" stop-color="#e91e63"/>
+                                <stop offset="100%" stop-color="#673ab7"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="80" cy="80" r="70" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <!-- num of finished workout-->
+                <div class="box">
+                    <h1>0</h1>
+                    <h3>workouts</h3>
+                </div>
+                <!-- num of burned calories-->
+                <div class="box">
+                    <h1>1200</h1>
+                    <h3>calories</h3>
+                </div>
+                <!-- time to spend for workout-->
+                <div class="box">
+                    <h1>120</h1>
+                    <h3>minutes</h3>
+                </div>
+            </div>
+            <div class="bmi">
+                <h3>BMI (kg/m<sup>2</sup>)</h3>
+                <div class="distance">
+                    <div class="my-bmi">
+                        <div class="milestone"></div>
+                        <p>19.14</p>
+                    </div>
+                    <div class="light-blue-background length-1"><p>15</p></div>
+                    <div class="dark-blue-background length-2-5"><p>16</p></div>
+                    <div class="green-background length-6-5"><p>18.5</p></div>
+                    <div class="yellow-green-background length-5"><p>25</p></div>
+                    <div class="orange-background length-5"><p>30</p></div>
+                    <div class="red-background length-5"><p>35</p></div>
+                    <div class="length-0"><p>40</p></div>
+                </div>
+                <div id="bmi-status"></div>
+            </div>
+        </div>
+        <div class="weekly-goal">
+            <div class="header">
+                <h1>WEEKLY GOAL</h1>
+                <h1 id="weekly-goal-data">2/6</h1>
+            </div>
+            <div class="calendar">
+                <div class="date">
+                    <p id="mon" class="hide">M</p>
+                    <p class="checked"><i class="fa-solid fa-check"></i></p>
+                    <div class="connect-next-day"></div>
+                </div>
+                <div class="date">
+                    <p id="tue" class="hide">T</p>
+                    <p class="checked"><i class="fa-solid fa-check"></i></p>
+                    <div class="connect-next-day hide"></div>
+                </div>
+                <div class="date">
+                    <p id="wed">W</p>
+                    <p class="hide"><i class="fa-solid fa-check"></i></p>
+                    <div class="connect-next-day hide"></div>
+                </div>
+                <div class="date">
+                    <p id="thu">T</p>
+                    <p class="checked hide"><i class="fa-solid fa-check"></i></p>
+                    <div class="connect-next-day hide"></div>
+                </div>
+                <div class="date">
+                    <p id="fri">F</p>
+                    <p class="checked hide"><i class="fa-solid fa-check"></i></p>
+                    <div class="connect-next-day hide"></div>
+                </div>
+                <div class="date">
+                    <p id="sat">S</p>
+                    <p class="checked hide"><i class="fa-solid fa-check"></i></p>
+                    <div class="connect-next-day hide"></div>
+                </div>
+                <div class="date">
+                    <p id="sun">S</p>
+                    <p class="checked hide"><i class="fa-solid fa-check"></i></p>
+                </div>
+            </div>
+        </div>
+        <div class="second-part">
+            <div class="mini-menu-bar">
+                <ul class="menu-list">
+                    <li id="workouts" onclick="goToWorkoutPart()"><a href="#workouts"><i
+                            class="fas fa-dumbbell"></i><span>WORKOUTS</span></a></li>
+                    <li id="report" onclick="goToReportPart()"><a href="#report"><i
+                            class="fas fa-calendar-check"></i><span>REPORT</span></a></li>
+                    <li id="mine" onclick="goToAccountPart()"><a href="#mine"><i
+                            class="fas fa-user"></i><span>MINE</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="part-body">
+                <div class="workouts">
+                    <div class="recent-list">
+                        <div class="topic-title">
+                            <h1>recent</h1>
+                            <p id="show-all" onclick="viewAll()">View all</p>
+                            <p id="back" onclick="backToSmallList()" class="hide">
+                                <i class="fa fa-arrow-left"></i>
+                            </p>
+                        </div>
+                        <div class="parent-list">
+                            <div class="list">
+                                <div class="recent-card pink-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="day">Day 2</div>
+                                        <div class="name">flat </br> stomach</div>
+                                    </div>
+                                </div>
+                                <div class="recent-card blue-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="day">Day 2</div>
+                                        <div class="name">flat </br> stomach</div>
+                                    </div>
+                                </div>
+                                <div class="recent-card purple-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="day">Day 2</div>
+                                        <div class="name">flat </br> stomach</div>
+                                    </div>
+                                </div>
+                                <div class="recent-card orange-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="day">Day 2</div>
+                                        <div class="name">flat </br> stomach</div>
+                                    </div>
+                                </div>
+                                <div class="recent-card yellow-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="day">Day 2</div>
+                                        <div class="name">flat </br> stomach</div>
+                                    </div>
+                                </div>
+                                <div class="recent-card green-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="day">Day 2</div>
+                                        <div class="name">flat </br> stomach</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="show-all-list hide">
+                            <div class="full-card purple-pastel-background">
+                                <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="name">flat stomach</div>
+                                    <div class="time-of-exercise">12 minutes</div>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">1/28</div>
+                                    <div class="completed-percent">4%</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="full-card purple-pastel-background">
+                                <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="name">flat stomach</div>
+                                    <div class="time-of-exercise">12 minutes</div>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">6/28</div>
+                                    <div class="completed-percent">4%</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="full-card purple-pastel-background">
+                                <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="name">flat stomach</div>
+                                    <div class="time-of-exercise">12 minutes</div>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">2/28</div>
+                                    <div class="completed-percent">4%</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="full-card purple-pastel-background">
+                                <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="name">flat stomach</div>
+                                    <div class="time-of-exercise">12 minutes</div>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">2/28</div>
+                                    <div class="completed-percent">4%</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="full-card purple-pastel-background">
+                                <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="name">flat stomach</div>
+                                    <div class="time-of-exercise">12 minutes</div>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">2/28</div>
+                                    <div class="completed-percent">4%</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="challenge-list">
+                        <div class="topic-title">
+                            <h1>challenge</h1>
+                        </div>
+                        <div class="parent-list">
+                            <div class="list">
+                                <div class="challenge-card blue-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="new">
+                                            <p>&#10024;</p>
+                                            <p>new</p>
+                                        </div>
+                                        <div class="num-of-challenge">7x4 challenge</div>
+                                        <div class="name">full body </br> workout</div>
+                                        <button class="challenge-btn" onclick="window.open('challenge-detail.html')">start</button>
+                                    </div>
+                                </div>
+                                <div class="challenge-card purple-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="new">
+                                            <p>&#10024;</p>
+                                            <p>new</p>
+                                        </div>
+                                        <div class="num-of-challenge">7x4 challenge</div>
+                                        <div class="name">full body </br> workout</div>
+                                        <button class="challenge-btn">start</button>
+                                    </div>
+                                    <div class="process">
+                                        <div class="completed-challenge">28/28</div>
+                                        <div class="process-bar">
+                                            <div class="completed-process"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workout-list">
+                        <div class="topic-title">
+                            <h1>abs workout</h1>
+                        </div>
+                        <div class="parent-list">
+                            <div class="list">
+                                <div class="workout-card yellow-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="new">
+                                            <p>&#10024;</p>
+                                            <p>new</p>
+                                        </div>
+                                        <div class="name">flat </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> beginner</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workout-list">
+                        <div class="topic-title">
+                            <h1>butt workout</h1>
+                        </div>
+                        <div class="parent-list">
+                            <div class="list">
+                                <div class="workout-card yellow-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="new">
+                                            <p>&#10024;</p>
+                                            <p>new</p>
+                                        </div>
+                                        <div class="name">flat </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> beginner</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workout-list">
+                        <div class="topic-title">
+                            <h1>thigh workout</h1>
+                        </div>
+                        <div class="parent-list">
+                            <div class="list">
+                                <div class="workout-card yellow-pastel-background">
+                                    <img src="../img/PngItem_4164512.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="new">
+                                            <p>&#10024;</p>
+                                            <p>new</p>
+                                        </div>
+                                        <div class="name">flat </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> beginner</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background"
+                                     onclick="window.open('../HTML/list-workout.html')">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> stomach</div>
+                                        <div class="time-of-exercise">10 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="workout-card orange-pastel-background">
+                                    <img src="../img/pngaaa.com-629517.png" alt="" class="poster">
+                                    <div class="content">
+                                        <div class="name">abs </br> stomach</div>
+                                        <div class="time-of-exercise">12 minutes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="report hide">
+                    <div class="total-data">
+                        <div class="title">total</br>data</div>
+                        <div class="total-workout">
+                            <i class="fa-solid fa-bolt"></i>
+                            <p class="num">123</p>
+                            <p>workouts</p>
+                        </div>
+                        <div class="total-calories">
+                            <i class="fa-solid fa-fire"></i>
+                            <p class="num">123</p>
+                            <p>calories</p>
+                        </div>
+                        <div class="total-minutes">
+                            <i class="fa-solid fa-stopwatch"></i>
+                            <p class="num">13423</p>
+                            <p>minutes</p>
+                        </div>
+                    </div>
+                    <div class="history-calendar">
+                        <div class="chart-header">
+                            <p>calendar</p>
+                            <button>history</button>
+                        </div>
+
+                        <div class="analysis">
+                            <p class="num">0</p>
+                            <p>days in this month</p>
+                        </div>
+                        <div class="calendar-detail">
+
+                        </div>
+                    </div>
+                    <div class="weight-tracker">
+                        <div class="chart-header">
+                            <p>weight</p>
+                            <p class="data">53.0kg
+                                <button>edit</button>
+                            </p>
+                        </div>
+                        <div class="analysis">
+                            <div class="variable-data bad-text">+ 1.00kg</div>
+                            <p>last
+                                <select name="periods" id="weight-period">
+                                    <option value="30 days">30 days</option>
+                                    <option value="30 days">90 days</option>
+                                    <option value="30 days">6 months</option>
+                                    <option value="30 days">12 months</option>
+                                </select>
+                            </p>
+                        </div>
+                        <canvas id="weightChart" style="width:100%"></canvas>
+                    </div>
+                    <div class="height-tracker">
+                        <div class="chart-header">
+                            <p>height</p>
+                            <button>edit</button>
+                        </div>
+                    </div>
+                    <div class="calories-tracker">
+                        <div class="chart-header">
+                            <p>calories burned, estimated</p>
+                        </div>
+                        <div class="analysis">
+                            <div class="variable-data"></div>
+                            <p>last
+                                <select name="periods" id="calories-period">
+                                    <option value="30 days">30 days</option>
+                                    <option value="30 days">90 days</option>
+                                    <option value="30 days">6 months</option>
+                                    <option value="30 days">12 months</option>
+                                </select>
+                            </p>
+                        </div>
+                        <canvas id="caloriesChart" style="width:100%"></canvas>
+                    </div>
+                    <div class="exercise-tracker">
+                        <div class="chart-header">
+                            <p>exercise</p>
+                        </div>
+                        <div class="analysis">
+                            <div class="variable-data"></div>
+                            <p>last
+                                <select name="periods" id="exercise-period">
+                                    <option value="30 days">30 days</option>
+                                    <option value="30 days">90 days</option>
+                                    <option value="30 days">6 months</option>
+                                    <option value="30 days">12 months</option>
+                                </select>
+                            </p>
+                        </div>
+                        <canvas id="exerciseChart" style="width:100%"></canvas>
+                    </div>
+                </div>
+                <div class="mine hide">
+                    <div class="weight-target">
+                        <div class="header">
+                            <h1 class="title">Weight target</h1>
+                        </div>
+                        <div class="dream-weight">
+                            <p>dream weight</p>
+                            <div class="dream-weight-data">
+                                <div class="compare-with-actual-weight bad-text hide">
+                                    <i class="fa-solid fa-up-long"></i>
+                                </div>
+                                <div class="compare-with-actual-weight bad-text">
+                                    <i class="fa-solid fa-down-long"></i>
+                                </div>
+                                <p>45kg
+                                    <button onclick="editDreamWeightData()">edit</button>
+                                </p>
+                            </div>
+                            <div class="dream-weight-data-edit hide">
+                                <div class="compare-with-actual-weight bad-text">
+                                    <i class="fa-solid fa-up-long"></i>
+                                </div>
+                                <div class="compare-with-actual-weight bad-text hide">
+                                    <i class="fa-solid fa-down-long"></i>
+                                </div>
+                                <p><input type="text">kg
+                                    <button onclick="saveDreamWeightData()">save</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-part-targets">
+                        <div class="header">
+                            <h1 class="title">Body parts to focus</h1>
+                            <button onclick="chooseBodyPartTarget()" id="edit-body-part-tags">edit</button>
+                            <button class="hide" onclick="saveChosenBodyPartTargets()" id="save-chosen-body-part-tags">
+                                save
+                            </button>
+                        </div>
+                        <ul class="chosen-list" id="my-workout-list">
+                            <li class="target-card">face</li>
+                        </ul>
+                        <ul class="body-part-list hide" id="chosenList">
+                            <li class="target-card" onclick="chooseThisTag('#full-body-tag')" id="full-body-tag">full
+                                body
+                            </li>
+                            <li class="target-card" onclick="chooseThisTag('#quick-ex-tag')" id="quick-ex-tag">quick
+                                exercises
+                            </li>
+                            <li class="target-card chosen pink-pastel-background" onclick="chooseThisTag('#face-tag')"
+                                id="face-tag">face
+                            </li>
+                            <li class="target-card" onclick="chooseThisTag('#yoga-tag')" id="yoga-tag">yoga</li>
+                            <li class="target-card" onclick="chooseThisTag('#stretch-tag')" id="stretch-tag">stretch
+                            </li>
+                            <li class="target-card" onclick="chooseThisTag('#meditation-tag')" id="meditation-tag">
+                                meditation
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="time-for-workout">
+                        <div class="header">
+                            <h1 class="title">How much time can you spend for workout?</h1>
+                            <button onclick="editTimeForWorkout()" id="edit-time-for-workout">edit</button>
+                            <button class="hide" onclick="saveTimeForWorkout()" id="save-time-for-workout">save</button>
+                        </div>
+                        <div class="actual-time-setting">
+                            <div class="daily-workout-time">
+                                <p>per day:</p>
+                                <div class="num">
+                                    <div id="my-workout-time">15</div>
+                                    minutes
+                                </div>
+                            </div>
+                            <div class="weekly-workout-time">
+                                <p>per week:</p>
+                                <div class="num">
+                                    <div>6</div>
+                                    days
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edit-time hide">
+                            <div class="daily-workout-time">
+                                <p>per day:</p>
+                                <p class="setting-data"><select id="choose-minute">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15" selected>15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                    <option value="55">55</option>
+                                    <option value="60">60</option>
+                                    <option value="65">65</option>
+                                    <option value="70">70</option>
+                                    <option value="75">75</option>
+                                    <option value="80">80</option>
+                                    <option value="85">85</option>
+                                    <option value="90">90</option>
+                                    <option value="95">95</option>
+                                    <option value="100">100</option>
+                                    <option value="105">105</option>
+                                    <option value="110">110</option>
+                                    <option value="115">115</option>
+                                    <option value="120">120</option>
+                                </select>Minutes
+                                </p>
+                            </div>
+                            <div class="weekly-workout-time">
+                                <p>per week:</p>
+                                <p class="setting-data"><select id="choose-num-of-day">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6" selected>6</option>
+                                    <option value="7">7</option>
+                                </select>Days
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://kit.fontawesome.com/6743dd3fb9.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+<script src="../JS/workout.js"></script>
+<script src="../JS/workout-charts.js"></script>
+<script src="../JS/workout-api.js"></script>
+</body>
+</html>

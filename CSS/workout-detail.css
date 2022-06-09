@@ -1,0 +1,241 @@
+body {
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+
+.hide {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.process {
+    width: 100%;
+    height: 10px;
+}
+
+.process .process-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(211, 211, 211, 0.5);
+}
+
+.process-bar .completed-process {
+    width: 50%;
+    height: 10px;
+    background: #eb5757;
+}
+
+.countdown-to-start {
+    margin-top: 250px;
+    position: fixed;
+    font-weight: 600;
+    font-size: 100px;
+    color: rgba(240, 128, 128, 0.5);
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: all 200ms;
+    z-index: 10000;
+    animation: textClip 1s linear infinite;
+}
+
+@keyframes textClip {
+    to {
+        margin-top: 130px;
+        font-size: 350px;
+        color: lightcoral;
+    }
+}
+
+.exercise, .rest {
+    margin: 15px;
+    padding: 0 15px 15px 15px;
+}
+
+.exercise-content, .rest-content {
+    margin: 10px;
+    padding: 0 100px 0 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.exercise .exercise-gif {
+    height: 500px;
+    width: 100%;
+    display: block;
+    justify-content: center;
+    text-align: center;
+}
+
+.exercise .exercise-gif img {
+    height: 100%;
+    width: 500px;
+}
+
+.exercise-name, .exercise-length, .rest-name, .rest-length {
+    font-size: 45px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.exercise-length, .rest-length {
+    color: #eb5757;
+    font-weight: 600;
+    text-transform: lowercase;
+}
+
+.exercise-process, .rest-process {
+    width: 100%;
+}
+
+.exercise-process .ex-process-bar, .rest-process .rest-process-bar {
+    width: 100%;
+    background: rgba(211, 211, 211, 0.5);
+    height: 50px;
+}
+
+.ex-completed-process, .rest-completed-process {
+    background: lightcoral;
+    width: 0;
+    height: 50px;
+    transition: ease 700ms;
+}
+
+.ex-process-buttons, .rest-process-buttons {
+    padding: 0 15px 0 15px;
+    position: absolute;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    width: 50%;
+    right: 30px;
+}
+
+.pause-this-ex, .play-this-ex, .skip-this-ex, .more-20s-rest button, .skip-this-rest {
+    font-size: 30px;
+    text-align: center;
+    color: rgba(128, 128, 128, 0.5);
+    line-height: 50px;
+}
+
+.pause-this-ex:hover, .play-this-ex:hover, .skip-this-ex:hover, .more-20s-rest button:hover, .skip-this-rest:hover {
+    color: rgba(51, 50, 50, 1);
+}
+
+.nxt-exercise {
+    width: 100%;
+    height: 500px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+}
+
+.nxt-exercise .nxt-ex-info {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 35px;
+    margin: -50px 100px 0 100px;
+}
+
+.nxt-exercise .nxt-ex-info .name {
+    max-width: 60%;
+}
+
+.nxt-exercise .nxt-ex-info .length {
+    text-transform: lowercase;
+    color: #eb5757;
+}
+
+.nxt-exercise .nxt-ex-info p {
+    padding: 10px 20px 10px 0;
+}
+
+.nxt-exercise img {
+    width: 400px;
+    height: 400px;
+}
+
+.rest-completed-process {
+    background: #a3b9cd;
+}
+
+.more-20s-rest button {
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+}
+
+.finished-workout {
+    margin: 20px;
+    padding: 25px;
+    font-size: 35px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    height: 620px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: url("../img/Enterprise Design Sprints.png") no-repeat;
+    background-size: 100%;
+}
+
+.finished-workout .content {
+    background: rgba(108, 65, 112, 0.5);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 5px solid lightgoldenrodyellow;
+    padding: 20px;
+    color: white;
+}
+
+.finished-workout .content .title {
+    font-weight: 800;
+    font-size: 60px;
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+
+.finished-workout .content .detail {
+    margin: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    text-transform: capitalize;
+}
+
+.detail .completed-exercises .data, .detail .burned-calories .data, .detail .spent-minutes .data {
+    color: lightpink;
+    font-weight: 800;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.finished-workout .content .buttons button {
+    border: none;
+    border-radius: 50px;
+    font-size: 50px;
+    font-weight: 700;
+    padding: 20px 30px 20px 30px;
+    text-transform: uppercase;
+    margin: 0 20px;
+    width: 45%;
+    cursor: pointer;
+}
+
+.finished-workout .content .buttons button:hover {
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
+.back-to-workout-page {
+    color: white;
+    background: lightcoral;
+}

@@ -1,0 +1,205 @@
+body {
+    color: grey;
+}
+
+.challenge-data {
+    display: flex;
+    justify-content: left;
+    text-align: center;
+    font-size: 45px;
+}
+
+#num-of-challenge {
+    color: lightpink;
+    margin-right: 18px;
+}
+
+.process {
+    width: 100%;
+    margin-top: 120px;
+    left: 5%;
+    position: relative;
+}
+
+.process .completed-challenge, .process .completed-percent {
+    color: white;
+    font-size: 18px;
+    padding-top: 10px;
+    font-weight: 500;
+}
+
+.process .completed-challenge {
+    margin-left: -2%;
+}
+
+.process .completed-percent {
+    margin-left: 90%;
+}
+
+.weekly-challenge-list {
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.weekly-challenge-list .week-card {
+    margin: 10px;
+}
+
+.weekly-challenge-list .week-card .week-header {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.weekly-challenge-list .week-card .week-header .weekly-status {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: rgba(227, 112, 111, 0.5);
+    margin-left: 10px;
+}
+
+.weekly-status .on-going, .weekly-status .need-to-start {
+    line-height: 30px;
+    text-align: center;
+    color: #eb5757;
+}
+
+.weekly-challenge-list .week-card .week-header .week-header-content {
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    color: #eb5757;
+}
+
+.week-header-content .week-process {
+    display: flex;
+    justify-content: right;
+}
+
+.total-days {
+    color: gray;
+}
+
+.week-card .challenge-list {
+    background: rgba(211, 211, 211, 0.2);
+    padding: 10px;
+    margin-left: 60px;
+    width: 90%;
+    border-radius: 10px;
+    text-align: center;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+}
+
+.week-card .challenge-list .daily-challenge {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin: 20px;
+    justify-self: center;
+}
+
+
+.daily-challenge .done, .daily-challenge .challenge-index {
+    line-height: 40px;
+}
+
+.daily-challenge.is-next-challenge .challenge-index,
+.daily-challenge.is-this-challenge .challenge-index,
+.daily-challenge.is-next-challenge .done {
+    margin-top: -3px;
+}
+
+.is-this-challenge {
+    border: 3px dashed lightcoral;
+    color: #eb5757;
+}
+
+.is-next-challenge {
+    border: 3px dashed grey;
+}
+
+.is-completed-challenge {
+    border: none;
+    background: #eb5757;
+    color: white;
+}
+
+.connect-to-next-day.for-next-challenge {
+    color: grey;
+}
+
+.connect-to-next-day {
+    color: #eb5757;
+    margin: 25px 100px 0 100px;
+}
+
+.achieve-weekly-goal {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 60px;
+    margin-top: 10px;
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.achieve-weekly-goal .week-index {
+    position: absolute;
+    color: gray;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.achieve-weekly-goal.done {
+    color: #eb5757;
+}
+
+.achieve-weekly-goal.done .week-index {
+    color: white;
+}
+
+.connect-next-week {
+    width: 3px;
+    height: 650px;
+    background: lightgrey;
+    position: absolute;
+    margin-top: -665px;
+    margin-left: 32px;
+    z-index: -1;
+}
+
+.connect-next-week.in-this-week {
+    background: #eb5757;
+}
+
+@media only screen and (min-width: 981px) {
+    .week-card .challenge-list {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .connect-next-week {
+        height: 200px;
+        margin-top: -202px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Get YouTube Video by Keyword</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"/>
+    <style>
+        .paginate {
+            margin-right: 5px;
+        }
+
+        li {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<form id="yt-form">
+    <p><input type="text" id="keyword-input" placeholder="Enter keyword" required></p>
+    <p><input type="number" id="maxresult-input" placeholder="Max Results" min="1" max="50" required></p>
+    <p>
+        <select id="order-input" required>
+            <option value="">--SELECT ORDER--</option>
+            <option value="date">Date</option>
+            <option value="rating">Rating</option>
+            <option value="relevance">Relevance</option>
+            <option value="title">Title</option>
+            <option value="viewCount" selected>View Count</option>
+        </select>
+    </p>
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+</form>
+
+<div id="videoListContainer"></div>
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script>
+    gapi.load("client", loadClient);
+
+    function loadClient() {
+        gapi.client.setApiKey("AIzaSyDR7ik9IZsLSkp9kOPOVinz9aa2y7ctD48");
+        return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+            .then(function () {
+                    console.log("GAPI client loaded for API");
+                },
+                function (err) {
+                    console.error("Error loading GAPI client for API", err);
+                });
+    }
+
+    const ytForm = document.getElementById('yt-form');
+    const keywordInput = document.getElementById('keyword-input');
+    const maxresultInput = document.getElementById('maxresult-input');
+    const orderInput = document.getElementById('order-input');
+    const videoList = document.getElementById('videoListContainer');
+    var pageToken = '';
+
+    ytForm.addEventListener('submit', e => {
+        e.preventDefault();
+        execute();
+    });
+
+    function paginate(e, obj) {
+        e.preventDefault();
+        pageToken = obj.getAttribute('data-id');
+        execute();
+    }
+
+    // Make sure the client is loaded before calling this method.
+    function execute() {
+        const searchString = keywordInput.value;
+        const maxresult = maxresultInput.value;
+        const orderby = orderInput.value;
+
+        var arr_search = {
+            "part": 'snippet',
+            "type": 'video',
+            "order": orderby,
+            "maxResults": maxresult,
+            "q": searchString
+        };
+
+        if (pageToken !== '') {
+            arr_search.pageToken = pageToken;
+        }
+
+        return gapi.client.youtube.search.list(arr_search)
+            .then(function (response) {
+                    const listItems = response.result.items;
+                    if (listItems) {
+                        let output = '<h4>Videos</h4><ul>';
+
+                        listItems.forEach(item => {
+                            const videoId = item.id.videoId;
+                            console.log(videoId)
+                            const videoTitle = item.snippet.title;
+                            // const durationTime = item.contentDetails.duration;
+
+                            output += `<li>
+                                <div className="video">
+                                    // <iframe width="560" height="315"
+                                    //         src="https://www.youtube.com/embed/${videoId}?controls=0"
+                                    //         title="YouTube video player" frameBorder="0"
+                                    //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    //         allowFullScreen></iframe>
+                                     <a data-fancybox href="https://www.youtube.com/watch?v=${videoId}">
+                                <img style="width: 500px; height: 300px;" src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg" />
+                            </a>
+                            <p>${videoTitle}</p>
+                                </div>
+                            </li>`;
+                        });
+                        output += '</ul>';
+
+                        if (response.result.prevPageToken) {
+                            output += `<br><a class="paginate" href="#" data-id="${response.result.prevPageToken}" onclick="paginate(event, this)">Prev</a>`;
+                        }
+
+                        if (response.result.nextPageToken) {
+                            output += `<a href="#" class="paginate" data-id="${response.result.nextPageToken}" onclick="paginate(event, this)">Next</a>`;
+                        }
+
+                        // Output list
+                        videoList.innerHTML = output;
+                        console.log(document.querySelector('.ytp-time-duration').textContent);
+                    }
+                },
+                function (err) {
+                    console.error("Execute error", err);
+                });
+    }
+</script>
+</body>
+</html>
