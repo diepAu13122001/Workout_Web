@@ -5,14 +5,13 @@
     <title>Workout list</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../CSS/list-workout.css">
-    <link rel="stylesheet" href="../HTML/workout.html">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="../JS/workout-api.js"></script>
 </head>
 <body>
 <div class="header">
     <div class="header-content">
-        <div class="header-title">abs-beginners</div>
+        <div class="header-title" id="title"></div>
         <div class="header-detail">
             <div class="workout-data">
                 <p id="num-of-workout">19</p>
@@ -24,11 +23,15 @@
             </div>
         </div>
     </div>
-    <img src="../img/pngaaa.com-629517.png" alt="">
+    <img src="../img/waist.png" alt="">
 </div>
 <div class="list-workout" id="list-workout"></div>
 <div class="start">
-    <button>start</button>
+    <button onclick="window.location = 'workout-detail.html'">start</button>
 </div>
+
+<script>
+    document.getElementById("title").innerHTML = localStorage.getItem("target")
+</script>
 </body>
 </html>

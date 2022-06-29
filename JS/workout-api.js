@@ -1,5 +1,6 @@
 const numOfRepeatInAWorkout = 30;
 const workoutTime = 15;
+
 // 1 repeat time = 2 seconds
 
 function getBodyPartList() {
@@ -30,6 +31,7 @@ function getBodyPartList() {
         }
     });
 }
+//getBodyPartList();
 
 // for only 1 list of one part
 function getWorkoutListByBodyPart(name) {
@@ -54,7 +56,7 @@ function getWorkoutListByBodyPart(name) {
                         <div class="num-of-repeat">x ` + numOfRepeatInAWorkout + `</div>
                     </div>
                     <div class="workout-gif">
-                        <img src="`+workoutList[j].gifUrl+`" alt="workout gif">
+                        <img src="` + workoutList[j].gifUrl + `" alt="workout gif">
                     </div>
                </div>`;
         }
@@ -64,4 +66,15 @@ function getWorkoutListByBodyPart(name) {
 function getYTVideoList(topic) {
 
 }
+
+const workoutCardType = ["beginner", "intermediate", "advanced", "following video", "challenge"];
+const targetList = ["full body", "quick exercises", "face", "yoga", "stretch", "meditation", "back", "cardio", "chest", "lower arms", "lower legs", "neck", "shoulders", "upper arms", "upper legs", "waist"];
+// 15 - 10', 30 - 20', 45 - 30' with 20 workouts in a list
+// const beginner = {name: "beginner", numOfRepeat: 15, minute: 10, numOfWorkout: 20, backgroundColor: "pink", urlPic: ""};
+// const intermediate = {name: "intermediate", numOfRepeat:30, minute: 20, numOfWorkout: 20, backgroundColor: "orange", urlPic: ""};
+// const advanced = {name: "advanced", numOfRepeat: 45, minute: 30, numOfWorkout: 20, backgroundColor: "purple", urlPic: ""};
+// const video = {name: "following video", numOfRepeat: 1, minute: 0, numOfWorkout: 0, backgroundColor: "yellow", urlPic: ""};
+// const challenge = {name: "7x4 challenge", week: 4, dayOfWeek: 7, numOfWorkout: 0, backgroundColor: "blue", urlPic: ""};
+
+
 

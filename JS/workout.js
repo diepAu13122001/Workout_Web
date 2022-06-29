@@ -243,7 +243,74 @@ function saveDreamWeightData() {
 function editDreamWeightData() {
     let content = document.querySelector('.dream-weight-data p').textContent;
     document.querySelector('.dream-weight-data-edit input').value = content.split('kg')[0];
-
     document.querySelector('.dream-weight-data').classList.add('hide');
     document.querySelector('.dream-weight-data-edit').classList.remove('hide');
 }
+
+function openWorkoutDetail(target, timeOfExs) {
+    window.open('HTML/list-workout.html');
+    localStorage.setItem("target", target);
+    localStorage.setItem("timeOfExs", timeOfExs);
+}
+
+function getRandomBackground() {
+    const backgroundList = ["pink-pastel-background", "blue-pastel-background", "purple-pastel-background", "orange-pastel-background", "yellow-pastel-background", "green-pastel-background"];
+    return backgroundList[Math.floor(Math.random() * (backgroundList.length - 1))];
+}
+
+const backImg = "../img/back.png";
+const cardioImg = "../img/cardio.png";
+const chestImg = "../img/chest.png";
+const lowerArmsImg = "../img/lowerArms.png";
+const lowerLegsImg = "../img/legs.png";
+const neckImg = "../img/neck.png";
+const shouldersImg = "../img/shoulders.png";
+const upperArmsImg = "../img/arm.png";
+const upperLegsImg = "../img/thigh.png";
+const waistImg = "../img/waist.png";
+
+function isNewCode() {
+    return '<div class="new">' +
+        '<p>&#10024;</p>' +
+        '<p>new</p>' +
+        '</div>';
+}
+
+const beginner = {name: "beginner", numOfRepeat: 15, minute: 10, numOfWorkout: 20, urlPic: ""};
+const intermediate = {name: "intermediate", numOfRepeat: 30, minute: 20, numOfWorkout: 20, urlPic: ""};
+const advanced = {name: "advanced", numOfRepeat: 45, minute: 30, numOfWorkout: 20, urlPic: ""};
+const video = {name: "following video", numOfRepeat: 1, minute: 0, numOfWorkout: 0, urlPic: ""};
+const challenge = {name: "7x4 challenge", week: 4, dayOfWeek: 7, numOfWorkout: 0, urlPic: ""};
+
+function createWorkoutCard(isNew, topic, name, level, timeOfExs, img) {
+    let code = '<div class="workout-card ' + getRandomBackground() + ' onclick="openWorkoutDetail(' + topic + ',' + timeOfExs + ')">';
+    code += '<img src=' + img + ' alt="" class="poster">';
+    code += '<div class="content">';
+    if (isNew) {
+        code += isNewCode();
+    }
+    code += '<div class="name">' + name + '</br>' + level + '</div>';
+    code += '<div class="time-of-exercise">' + timeOfExs + '</div>';
+    // code += '</div>';
+    code += '</div>';
+    return code;
+}
+
+function createWorkoutList() {
+    for (let i = 0; i < document.getElementsByClassName('chosen-list')[0].getElementsByClassName('target-card').length; i++) {
+
+    }
+}
+
+function createChallengeCard() {
+
+}
+
+function createChallengeList() {
+
+}
+
+function createRecentFullCard() {
+
+}
+

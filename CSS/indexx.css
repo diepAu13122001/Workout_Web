@@ -1,16 +1,3 @@
-/*===========================
-		COMMON css
-===========================*/
-html {
-  scroll-behavior: smooth; }
-.cricle-style {
-  height: 600px !important;
-  justify-content: center;
-  align-items: center;
-}
-.documen-style {
-  height: 350px !important;
-}
 body {
   font-family: "Inter", sans-serif !important;
   font-weight: normal;
