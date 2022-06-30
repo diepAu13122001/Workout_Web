@@ -32,7 +32,6 @@ function convertWorkoutLengthToSec(isExercise) {
         exLengthText = document.querySelector('.exercise-length').textContent;
     } else if (!isExercise) {
         exLengthText = document.querySelector('.rest-length').textContent;
-        console.log(exLengthText)
     }
     let time = {minute: parseInt(exLengthText.split(":")[0]), second: parseInt(exLengthText.split(":")[1])};
     return time.second + time.minute * 60;
@@ -101,20 +100,102 @@ function changeToRestPart() {
             document.querySelector('.rest-completed-process').style.width = calWidthOfCompletedProcess(restLength, false) + "%";
             countdownRestLength--;
         } else if (countdownRestLength === -1) {
-            document.querySelector('.exercise').classList.remove('hide')
             document.querySelector('.rest').classList.add('hide')
             document.querySelector('.rest-name').style.color = "black";
             clearInterval();
         }
     }, 1000)
+    setTimeout(changeToFinishPart, (restLength + 1) * 1000);
 }
 
-function createExercise() {
-
+function changeToFinishPart() {
+    clearInterval();
+    document.querySelector('.finished-workout').classList.remove('hide');
 }
 
-function createRest() {
+const restTime = 10; //seconds
+const weight = localStorage.getItem("weight");
 
+function createExercise(exercise) {
+    return '<div class="exercise">' +
+        '<div class="exercise-content">' +
+        '<div class="exercise-name">' + exercise.name + '</div>' +
+        '<div class="exercise-length">' + formatExLengthText(numOfRepeat * 2) + '</div>' +
+        '</div>' +
+        '<div class="exercise-gif">' +
+        '<img src="' + exercise.gifUrl + '" alt="' + exercise.name + '">' +
+        '</div>' +
+        '<div class="exercise-process">' +
+        '<div class="ex-process-buttons">' +
+        '<div class="pause-this-ex" onclick="pauseThisEx()">' +
+        '<i class="fa-solid fa-pause"></i>' +
+        '</div>' +
+        '<div class="play-this-ex hide" onclick="playThisEx()">' +
+        '<i class="fa-solid fa-play"></i>' +
+        '</div>' +
+        '<div class="skip-this-ex" onclick="skipThisEx()">' +
+        '<i class="fa-solid fa-angle-right"></i>' +
+        '</div>' +
+        '</div>' +
+        '<div class="ex-process-bar">' +
+        '<div class="ex-completed-process"></div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+}
+
+function createRest(nextExercise) {
+    return '<div class="rest">' +
+        '<div class="rest-content">' +
+        '<div class="rest-name">take a rest</div>' +
+        '<div class="rest-length">' + formatExLengthText(restTime) + '</div>' +
+        '</div>' +
+        '<div class="nxt-exercise">' +
+        '<img src="' + nextExercise.gifUrl + '" alt="' + nextExercise.name + '">' +
+        '<div class="nxt-ex-info">' +
+        '<p class="name">' + nextExercise.name + '</p>' +
+        '<p class="length">x ' + numOfRepeat + '</p>' +
+        '</div>' +
+        '</div>' +
+        '<div class="rest-process">' +
+        '<div class="rest-process-buttons">' +
+        '<div class="skip-this-rest" onclick="skipThisRest()">' +
+        '<i class="fa-solid fa-angle-right"></i>' +
+        '</div>' +
+        '</div>' +
+        '<div class="rest-process-bar">' +
+        '<div class="rest-completed-process"></div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+}
+
+//'http://d205bpvrqc9yn1.cloudfront.net/3541.gif'
+
+function createFinish() {
+    return '<div class="finished-workout">' +
+        '<div class="content">' +
+        '<div class="title">you rock!</div>' +
+        '<div class="detail">' +
+        '<div class="completed-exercises">' +
+        '<p class="data">' + realWorkout + '</p>' +
+        '<p>exercises</p>' +
+        '</div>' +
+        '<div class="burned-calories">' +
+        '<p class="data">' + calBurnedCalories() + '</p>' +
+        '<p>calories</p>' +
+        '</div>' +
+        '<div class="spent-minutes">' +
+        '<p class="data">' + realTime + '</p>' +
+        '<p>minutes</p>' +
+        '</div>' +
+        '</div>' +
+        '<div class="buttons">' +
+        '<button class="do-it-again" onclick="location.reload()">do it again</button>' +
+        '<button class="back-to-workout-page" onclick="backWorkoutPage()">exit</button>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
 }
 
 function pauseThisEx() {
@@ -133,6 +214,51 @@ function skipThisRest() {
 
 }
 
-function moreRestTime() {
-
+function calBurnedCalories() {
+    return Math.round(realTime * (7 * 3.5 * weight) / 200);
 }
+
+function backWorkoutPage() {
+    localStorage.removeItem("numOfWorkout");
+    localStorage.removeItem("numOfRepeat");
+    localStorage.removeItem("idWorkoutList");
+    window.location = '../index.html';
+}
+
+function getWKById(id) {
+    var startTime = performance.now()
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://exercisedb.p.rapidapi.com/exercises/exercise/" + id,
+        "method": "GET",
+        "headers": {
+            "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+            "X-RapidAPI-Key": "cd6aaee6a8msh9081bad290c8c40p1faf69jsn64cf5ee18e80"
+        }
+    };
+    $.ajax(settings).done(function (response) {
+        workoutList.push(response);
+    });
+    var endTime = performance.now()
+}
+
+const workoutList = [];
+const numOfRepeat = parseInt(localStorage.getItem("numOfRepeat"));
+const numOfWorkout = parseInt(localStorage.getItem("numOfWorkout"));
+const idList = localStorage.getItem("idWorkoutList").split(" ");
+const totalWorkoutTime = numOfRepeat * 2 * numOfWorkout;
+const realTime = totalWorkoutTime;
+const realWorkout = numOfWorkout;
+
+function getWorkoutList() {
+    for (let i = 0; i < numOfWorkout; i++) {
+        getWKById(idList[i]);
+    }
+}
+
+window.onload = function () {
+    // getWorkoutList();
+    setTimeout(startToWorkout, 100);
+}
+

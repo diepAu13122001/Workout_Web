@@ -86,18 +86,13 @@
             "q": searchString
         };
 
-        var getDuration = {
-            "part": 'contentDetails',
-            "id": 'scEOdkPQEOw'
-        };
-
         if (pageToken !== '') {
             // arr_search.pageToken = pageToken;
             getDuration.pageToken = pageToken;
         }
 
-        // return gapi.client.youtube.search.list(arr_search)
-        return gapi.client.youtube.search.list(getDuration)
+        return gapi.client.youtube.search.list(arr_search)
+        // return gapi.client.youtube.search.list(getDuration)
             .then(function (response) {
                 const durationTime = contentDetails.duration;
                     console.log(durationTime);

@@ -1,6 +1,8 @@
+localStorage.setItem("weight", document.getElementById("weight").innerHTML.split("kg")[0]);
 let number = document.getElementById("number");
 let counter = 0;
 let target = 65;
+
 setInterval(() => {
     if (counter === target) {
         clearInterval();
@@ -81,6 +83,7 @@ function goToAccountPart() {
 
 function calWidthOfCompletedProcessTag() {
     changeBMIStatus();
+    setTimeout(getBodyPartList, 100);
     for (let i = 0; i < document.querySelectorAll('.process').length; i++) {
         let completedChallengeText = document.querySelectorAll('.completed-challenge')[i].textContent;
         let completedPercent = calCompletedProcess(completedChallengeText) + "%";
@@ -248,25 +251,62 @@ function editDreamWeightData() {
     document.querySelector('.dream-weight-data-edit').classList.remove('hide');
 }
 
-function openWorkoutDetail(target, timeOfExs, img) {
+function getBodyPartList() {
+    var startTime = performance.now()
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+        "method": "GET",
+        "headers": {
+            "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+            "X-RapidAPI-Key": "24c7aefa92msh65d245d3e2bf9d2p1359acjsn201d3a869065"
+        }
+    };
+    $.ajax(settings).done(function (response) {
+        let bodyParts = [];
+        for (let i in response) {
+            bodyParts.push({part: response[i], partId: response[i], chosen: Math.floor(Math.random() * 2)});
+            let id = bodyParts[i].partId.replace(' ', '-');
+            if (bodyParts[i].chosen === 1) {
+                document.getElementById("chosenList").innerHTML += `<li class="target-card chosen pink-pastel-background"
+                                            onclick="chooseThisTag('#${id}')"
+                                            id="${id}">` + bodyParts[i].part + `</li>`;
+                document.getElementById("my-workout-list").innerHTML += ` <li class="target-card">` + bodyParts[i].part + `</li>`;
+            } else if (bodyParts[i].chosen === 0) {
+                document.getElementById("chosenList").innerHTML += `<li class="target-card"
+                                            onclick="chooseThisTag('#${id}')"
+                                            id="${id}">` + bodyParts[i].part + `</li>`;
+            }
+        }
+    });
+    var endTime = performance.now()
+
+    setTimeout(addWorkoutList, (endTime - startTime) * 1000);
+}
+
+function openWorkoutList(target, timeOfExs, img, background) {
     window.open('HTML/list-workout.html');
     localStorage.setItem("target", target);
     localStorage.setItem("timeOfExs", timeOfExs);
     localStorage.setItem("imgURL", img);
+    localStorage.setItem("background", background);
 }
 
-function openVideoDetail(target, numOfVideo, img) {
+function openVideoList(target, numOfVideo, img, background) {
     window.open('HTML/list-video.html');
-    localStorage.setItem("target", target);
+    localStorage.setItem("videoKey", target);
     localStorage.setItem("numOfVideo", numOfVideo);
-    localStorage.setItem("imgURL", img);
+    localStorage.setItem("poster", img);
+    localStorage.setItem("videoBackground", background);
 }
 
-function openChallengeDetail(target, numOfCompletedDay, img) {
+function openChallengeDetail(target, numOfCompletedDay, img, background) {
     window.open('HTML/challenge-detail.html');
     localStorage.setItem("target", target);
     localStorage.setItem("imgURL", img);
     localStorage.setItem("numOfCompletedDay", numOfCompletedDay);
+    localStorage.setItem("background", background);
 }
 
 function getRandomBackground() {
@@ -283,15 +323,15 @@ function isNewCode() {
 
 function createWorkoutCard(isNew, topic, level, timeOfExs, img) {
     topic = topic.trim();
-    timeOfExs += " minutes";
-    let code = '<div class="workout-card ' + getRandomBackground() + ' " onclick="openWorkoutDetail(\'' + topic + '\',\'' + timeOfExs + '\',\'' + img + '\')">';
+    let background = getRandomBackground();
+    let code = '<div class="workout-card ' + background + ' " onclick="openWorkoutList(\'' + topic + '\',\'' + timeOfExs + '\',\'' + img + '\',\'' + background + '\')">';
     code += '<img src=' + img + ' class="poster" alt="">';
     code += '<div class="content">';
     if (isNew) {
         code += isNewCode();
     }
     code += '<div class="name">' + topic + '</br>' + level + '</div>';
-    code += '<div class="time-of-exercise">' + timeOfExs + '</div>';
+    code += '<div class="time-of-exercise">' + timeOfExs + ' minutes</div>';
     code += '</div>';
     code += '</div>';
     return code;
@@ -299,7 +339,8 @@ function createWorkoutCard(isNew, topic, level, timeOfExs, img) {
 
 function createVideoCard(isNew, topic, numOfVideo, img) {
     topic = topic.trim();
-    let code = '<div class="workout-card ' + getRandomBackground() + ' " onclick="openVideoDetail(\'' + topic + '\',\'' + numOfVideo + '\',\'' + img + '\')">';
+    let background = getRandomBackground();
+    let code = '<div class="workout-card ' + background + ' " onclick="openVideoList(\'' + topic + '\',\'' + numOfVideo + '\',\'' + img + '\',\'' + background + '\')">';
     code += '<img src=' + img + ' class="poster" alt="">';
     code += '<div class="content">';
     if (isNew) {
@@ -330,7 +371,7 @@ function createATopicWorkoutList(topic, img, numOfType) {
     const beginner = {name: "beginner", numOfRepeat: 15, minute: 10, numOfWorkout: 20};
     const intermediate = {name: "intermediate", numOfRepeat: 30, minute: 20, numOfWorkout: 20};
     const advanced = {name: "advanced", numOfRepeat: 45, minute: 30, numOfWorkout: 20};
-    const video = {name: "following video", numOfRepeat: 1, minute: 10, numOfWorkout: 0};
+    const video = {name: "following video", numOfRepeat: 1, minute: 10, numOfWorkout: 10};
     const challenge = {name: "7x4 challenge", week: 4, dayOfWeek: 7, numOfWorkout: 0};
     let workoutTypeList = [challenge, video, beginner, intermediate, advanced];
 
@@ -431,4 +472,5 @@ function createWorkoutList() {
 function addWorkoutList() {
     document.getElementsByClassName('workouts')[0].innerHTML = createWorkoutList();
 }
+
 
