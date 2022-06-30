@@ -28,6 +28,7 @@
 
 .video-content {
     width: 50%;
+    cursor: pointer;
 }
 
 .video-content .video-name {

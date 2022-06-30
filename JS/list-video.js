@@ -82,7 +82,7 @@ function loadClient() {
 }
 
 function getVideoListByKey() {
-    const key = videoKey + " workout";
+    const key = videoKey + " workout for women";
     const maxResult = numOfVid;
 
     var arr_search = {
