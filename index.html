@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="CSS/indexx.css">
     <link rel="stylesheet" href="CSS/workout.css">
 </head>
-<body>
+<body onload="addWorkoutList()">
 <main class="main-wrapper">
     <div class="first-part">
         <div class="today-data">
@@ -126,7 +126,7 @@
         </div>
         <div class="part-body">
             <div class="workouts">
-                <div class="recent-list">
+                <div class="recent-list hide">
                     <div class="topic-title">
                         <h1>recent</h1>
                         <p id="show-all" onclick="viewAll()">View all</p>
@@ -253,32 +253,233 @@
                         </div>
                     </div>
                 </div>
-                <div class="challenge-list">
+                <div class="challenge-list hide">
                     <div class="topic-title">
                         <h1>challenge</h1>
                     </div>
                     <div class="parent-list">
                         <div class="list">
-                            <div class="challenge-card blue-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
+                            <div class="challenge-card purple-pastel-background">
+                                <img src="img/arm.png" alt="" class="poster">
                                 <div class="content">
-                                    <div class="new">
-                                        <p>&#10024;</p>
-                                        <p>new</p>
-                                    </div>
                                     <div class="num-of-challenge">7x4 challenge</div>
                                     <div class="name">full body </br> workout</div>
-                                    <button class="challenge-btn" onclick="window.open('challenge-detail.html')">start
-                                    </button>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="challenge-card purple-pastel-background">
+                                <img src="img/back.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/butt.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/cardio.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/chest.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/face.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/fullBody.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/legs.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/lowerArms.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/meditation.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/neck.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/quickExs.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/shoulders.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/thigh.png" alt="" class="poster">
+                                <div class="content">
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
                                 <img src="img/waist.png" alt="" class="poster">
                                 <div class="content">
-                                    <div class="new">
-                                        <p>&#10024;</p>
-                                        <p>new</p>
+                                    <div class="num-of-challenge">7x4 challenge</div>
+                                    <div class="name">full body </br> workout</div>
+                                    <button class="challenge-btn">start</button>
+                                </div>
+                                <div class="process">
+                                    <div class="completed-challenge">28/28</div>
+                                    <div class="process-bar">
+                                        <div class="completed-process"></div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="challenge-card yellow-pastel-background">
+                                <img src="img/yoga.png" alt="" class="poster">
+                                <div class="content">
                                     <div class="num-of-challenge">7x4 challenge</div>
                                     <div class="name">full body </br> workout</div>
                                     <button class="challenge-btn">start</button>
@@ -293,7 +494,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="workout-list">
+                <div class="workout-list hide">
                     <div class="topic-title">
                         <h1>abs workout</h1>
                     </div>
@@ -318,97 +519,14 @@
                                 </div>
                             </div>
                             <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="name">abs </br> stomach</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                            <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="name">abs </br> stomach</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="workout-list">
-                    <div class="topic-title">
-                        <h1>butt workout</h1>
-                    </div>
-                    <div class="parent-list">
-                        <div class="list">
-                            <div class="workout-card yellow-pastel-background">
-                                <img src="img/fullBody.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="new">
-                                        <p>&#10024;</p>
-                                        <p>new</p>
-                                    </div>
-                                    <div class="name">flat </br> stomach</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                            <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="name">abs </br> beginner</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                            <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="name">abs </br> stomach</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                            <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="name">abs </br> stomach</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="workout-list">
-                    <div class="topic-title">
-                        <h1>thigh workout</h1>
-                    </div>
-                    <div class="parent-list">
-                        <div class="list">
-                            <div class="workout-card yellow-pastel-background">
                                 <img src="img/back.png" alt="" class="poster">
                                 <div class="content">
-                                    <div class="new">
-                                        <p>&#10024;</p>
-                                        <p>new</p>
-                                    </div>
-                                    <div class="name">flat </br> stomach</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                            <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
-                                <div class="content">
-                                    <div class="name">abs </br> beginner</div>
-                                    <div class="time-of-exercise">12 minutes</div>
-                                </div>
-                            </div>
-                            <div class="workout-card orange-pastel-background"
-                                 onclick="openWorkoutDetail('lower legs')">
-                                <img src="http://i3.ytimg.com/vi/UItWltVZZmE/hqdefault.jpg" class="thumbnail">
-                                <div class="content">
                                     <div class="name">abs </br> stomach</div>
-                                    <div class="time-of-exercise">10 minutes</div>
+                                    <div class="time-of-exercise">12 minutes</div>
                                 </div>
                             </div>
                             <div class="workout-card orange-pastel-background">
-                                <img src="img/waist.png" alt="" class="poster">
+                                <img src="img/legs.png" alt="" class="poster">
                                 <div class="content">
                                     <div class="name">abs </br> stomach</div>
                                     <div class="time-of-exercise">12 minutes</div>
@@ -565,8 +683,6 @@
                             id="face-tag">face
                         </li>
                         <li class="target-card" onclick="chooseThisTag('#yoga-tag')" id="yoga-tag">yoga</li>
-                        <li class="target-card" onclick="chooseThisTag('#stretch-tag')" id="stretch-tag">stretch
-                        </li>
                         <li class="target-card" onclick="chooseThisTag('#meditation-tag')" id="meditation-tag">
                             meditation
                         </li>
@@ -653,8 +769,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+<script src="JS/workout-api.js"></script>
 <script src="JS/workout.js"></script>
 <script src="JS/workout-charts.js"></script>
-<script src="JS/workout-api.js"></script>
+
 </body>
 </html>

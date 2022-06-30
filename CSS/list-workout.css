@@ -61,10 +61,10 @@ body {
 }
 
 .header img {
-    margin-left: 60%;
+    margin-left: 50%;
     margin-top: -250px;
-    max-width: 200%;
-    max-height: 200%;
+    max-width: 100%;
+    height: 200%;
 }
 
 .start {

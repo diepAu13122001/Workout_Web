@@ -424,7 +424,7 @@ svg {
     color: darkorange;
 }
 
-.parent-list:hover {
+.parent-list {
     overflow-x: scroll;
 }
 
@@ -486,8 +486,8 @@ svg {
 
 .poster {
     padding: 0;
-    max-width: 200%;
-    max-height: 200%;
+    max-width: 150%;
+    max-height: 150%;
     z-index: -1;
 }
 
@@ -568,6 +568,7 @@ svg {
     background: #eb5757;
     height: 5px;
     position: absolute;
+    width: 30%;
 }
 
 .process .completed-challenge,
@@ -627,7 +628,7 @@ svg {
 }
 
 .challenge-card .process {
-    margin-top: -78px;
+    margin-top: -22%;
 }
 
 .challenge-card .process .process-bar {
@@ -654,7 +655,7 @@ svg {
     max-height: 150%;
     max-width: 150%;
     margin-left: 120px;
-    margin-top: -100px;
+    margin-top: -56px;
 }
 
 .workout-card .content {
@@ -671,8 +672,8 @@ svg {
 }
 
 .workout-card .poster {
-    margin-left: 120px;
-    margin-top: -80px;
+    margin-left: 130px;
+    margin-top: -70px;
 }
 
 .pink-pastel-background {

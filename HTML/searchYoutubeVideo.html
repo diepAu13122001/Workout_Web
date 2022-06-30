@@ -76,41 +76,47 @@
     function execute() {
         const searchString = keywordInput.value;
         const maxresult = maxresultInput.value;
-        const orderby = orderInput.value;
+     //   const orderby = orderInput.value;
 
         var arr_search = {
             "part": 'snippet',
             "type": 'video',
-            "order": orderby,
+            // "order": orderby,
             "maxResults": maxresult,
             "q": searchString
         };
 
+        var getDuration = {
+            "part": 'contentDetails',
+            "id": 'scEOdkPQEOw'
+        };
+
         if (pageToken !== '') {
-            arr_search.pageToken = pageToken;
+            // arr_search.pageToken = pageToken;
+            getDuration.pageToken = pageToken;
         }
 
-        return gapi.client.youtube.search.list(arr_search)
+        // return gapi.client.youtube.search.list(arr_search)
+        return gapi.client.youtube.search.list(getDuration)
             .then(function (response) {
+                const durationTime = contentDetails.duration;
+                    console.log(durationTime);
+
                     const listItems = response.result.items;
                     if (listItems) {
                         let output = '<h4>Videos</h4><ul>';
-
                         listItems.forEach(item => {
-                            const videoId = item.id.videoId;
-                            console.log(videoId)
+                            const id = item.id.videoId;
                             const videoTitle = item.snippet.title;
-                            // const durationTime = item.contentDetails.duration;
-
                             output += `<li>
                                 <div className="video">
                                     // <iframe width="560" height="315"
-                                    //         src="https://www.youtube.com/embed/${videoId}?controls=0"
+                                    //         src="https://www.youtube.com/embed/${id}?controls=0"
                                     //         title="YouTube video player" frameBorder="0"
                                     //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     //         allowFullScreen></iframe>
-                                     <a data-fancybox href="https://www.youtube.com/watch?v=${videoId}">
-                                <img style="width: 500px; height: 300px;" src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg" />
+                                     <a data-fancybox href="https://www.youtube.com/watch?v=${id}">
+                                <img style="width: 500px; height: 300px;" src="http://i3.ytimg.com/vi/${id}/hqdefault.jpg" />
                             </a>
                             <p>${videoTitle}</p>
                                 </div>

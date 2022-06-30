@@ -180,6 +180,7 @@ function saveChosenBodyPartTargets() {
     document.querySelector('.body-part-targets .chosen-list').classList.remove('hide');
     document.querySelector('#save-chosen-body-part-tags').classList.add('hide');
     document.querySelector('#edit-body-part-tags').classList.remove('hide');
+    addWorkoutList();
 }
 
 function chooseThisTag(idOfTag) {
@@ -247,27 +248,31 @@ function editDreamWeightData() {
     document.querySelector('.dream-weight-data-edit').classList.remove('hide');
 }
 
-function openWorkoutDetail(target, timeOfExs) {
+function openWorkoutDetail(target, timeOfExs, img) {
     window.open('HTML/list-workout.html');
     localStorage.setItem("target", target);
     localStorage.setItem("timeOfExs", timeOfExs);
+    localStorage.setItem("imgURL", img);
+}
+
+function openVideoDetail(target, numOfVideo, img) {
+    window.open('HTML/list-video.html');
+    localStorage.setItem("target", target);
+    localStorage.setItem("numOfVideo", numOfVideo);
+    localStorage.setItem("imgURL", img);
+}
+
+function openChallengeDetail(target, numOfCompletedDay, img) {
+    window.open('HTML/challenge-detail.html');
+    localStorage.setItem("target", target);
+    localStorage.setItem("imgURL", img);
+    localStorage.setItem("numOfCompletedDay", numOfCompletedDay);
 }
 
 function getRandomBackground() {
     const backgroundList = ["pink-pastel-background", "blue-pastel-background", "purple-pastel-background", "orange-pastel-background", "yellow-pastel-background", "green-pastel-background"];
     return backgroundList[Math.floor(Math.random() * (backgroundList.length - 1))];
 }
-
-const backImg = "../img/back.png";
-const cardioImg = "../img/cardio.png";
-const chestImg = "../img/chest.png";
-const lowerArmsImg = "../img/lowerArms.png";
-const lowerLegsImg = "../img/legs.png";
-const neckImg = "../img/neck.png";
-const shouldersImg = "../img/shoulders.png";
-const upperArmsImg = "../img/arm.png";
-const upperLegsImg = "../img/thigh.png";
-const waistImg = "../img/waist.png";
 
 function isNewCode() {
     return '<div class="new">' +
@@ -276,41 +281,154 @@ function isNewCode() {
         '</div>';
 }
 
-const beginner = {name: "beginner", numOfRepeat: 15, minute: 10, numOfWorkout: 20, urlPic: ""};
-const intermediate = {name: "intermediate", numOfRepeat: 30, minute: 20, numOfWorkout: 20, urlPic: ""};
-const advanced = {name: "advanced", numOfRepeat: 45, minute: 30, numOfWorkout: 20, urlPic: ""};
-const video = {name: "following video", numOfRepeat: 1, minute: 0, numOfWorkout: 0, urlPic: ""};
-const challenge = {name: "7x4 challenge", week: 4, dayOfWeek: 7, numOfWorkout: 0, urlPic: ""};
-
-function createWorkoutCard(isNew, topic, name, level, timeOfExs, img) {
-    let code = '<div class="workout-card ' + getRandomBackground() + ' onclick="openWorkoutDetail(' + topic + ',' + timeOfExs + ')">';
-    code += '<img src=' + img + ' alt="" class="poster">';
+function createWorkoutCard(isNew, topic, level, timeOfExs, img) {
+    topic = topic.trim();
+    timeOfExs += " minutes";
+    let code = '<div class="workout-card ' + getRandomBackground() + ' " onclick="openWorkoutDetail(\'' + topic + '\',\'' + timeOfExs + '\',\'' + img + '\')">';
+    code += '<img src=' + img + ' class="poster" alt="">';
     code += '<div class="content">';
     if (isNew) {
         code += isNewCode();
     }
-    code += '<div class="name">' + name + '</br>' + level + '</div>';
+    code += '<div class="name">' + topic + '</br>' + level + '</div>';
     code += '<div class="time-of-exercise">' + timeOfExs + '</div>';
-    // code += '</div>';
+    code += '</div>';
+    code += '</div>';
+    return code;
+}
+
+function createVideoCard(isNew, topic, numOfVideo, img) {
+    topic = topic.trim();
+    let code = '<div class="workout-card ' + getRandomBackground() + ' " onclick="openVideoDetail(\'' + topic + '\',\'' + numOfVideo + '\',\'' + img + '\')">';
+    code += '<img src=' + img + ' class="poster" alt="">';
+    code += '<div class="content">';
+    if (isNew) {
+        code += isNewCode();
+    }
+    code += '<div class="name"> following </br> video</div>';
+    code += '</div>';
+    code += '</div>';
+    return code;
+}
+
+function createSmallChallengeCard(isNew, topic, numOfCompletedDay, img) {
+    topic = topic.trim();
+    let code = '<div class="workout-card ' + getRandomBackground() + ' " onclick="openChallengeDetail(\'' + topic + '\',\'' + numOfCompletedDay + '\',\'' + img + '\')">';
+    code += '<img src=' + img + ' class="poster" alt="">';
+    code += '<div class="content">';
+    if (isNew) {
+        code += isNewCode();
+    }
+    code += '<div class="name">' + topic + '</br>workout</div>';
+    code += '<div class="time-of-exercise"> day' + numOfCompletedDay + '</div>';
+    code += '</div>';
+    code += '</div>';
+    return code;
+}
+
+function createATopicWorkoutList(topic, img, numOfType) {
+    const beginner = {name: "beginner", numOfRepeat: 15, minute: 10, numOfWorkout: 20};
+    const intermediate = {name: "intermediate", numOfRepeat: 30, minute: 20, numOfWorkout: 20};
+    const advanced = {name: "advanced", numOfRepeat: 45, minute: 30, numOfWorkout: 20};
+    const video = {name: "following video", numOfRepeat: 1, minute: 10, numOfWorkout: 0};
+    const challenge = {name: "7x4 challenge", week: 4, dayOfWeek: 7, numOfWorkout: 0};
+    let workoutTypeList = [challenge, video, beginner, intermediate, advanced];
+
+    let code = '<div class="workout-list">';
+    code += '<div class="topic-title">';
+    code += ' <h1>' + topic + ' workout </h1>';
+    code += '</div>';
+    code += '<div class="parent-list">';
+    code += '<div class="list">';
+    for (let i = 0; i < numOfType; i++) {
+        if (i === 0) {
+            code += createSmallChallengeCard(true, topic, 3, img);
+        } else if (i === 1) {
+            code += createVideoCard(true, topic, 10, img);
+        } else {
+            code += createWorkoutCard(false, topic, workoutTypeList[i].name, workoutTypeList[i].minute, img);
+        }
+    }
+    code += '</div></div></div>';
+    return code;
+}
+
+function createChallengeCard(topic, numOfCompletedDay, img) {
+    let code = '<div class="challenge-card ' + getRandomBackground() + '">';
+    code += '<img src=' + img + ' class="poster" alt="">';
+    code += '<div class="content">';
+    code += '<div class="num-of-challenge">7x4 challenge</div>';
+    code += '<div class="name">' + topic + '</br>workout</div>';
+    code += '<button class="challenge-btn" onclick="openChallengeDetail(\'' + topic + '\',\'' + numOfCompletedDay + '\',\'' + img + '\')">start\n</button>';
+    code += '</div>';
+    if (numOfCompletedDay > 0) {
+        code += '<div class="process">' +
+            '<div class="completed-challenge">' + numOfCompletedDay + '/28</div>' +
+            '<div class="process-bar">' +
+            '<div class="completed-process"></div>' +
+            '</div></div>';
+    }
     code += '</div>';
     return code;
 }
 
 function createWorkoutList() {
+    const backImg = "img/back.png";
+    const cardioImg = "img/cardio.png";
+    const chestImg = "img/chest.png";
+    const lowerArmsImg = "img/lowerArms.png";
+    const lowerLegsImg = "img/legs.png";
+    const neckImg = "img/neck.png";
+    const shouldersImg = "img/shoulders.png";
+    const upperArmsImg = "img/arm.png";
+    const upperLegsImg = "img/thigh.png";
+    const waistImg = "img/waist.png";
+    const fullBodyImg = "img/fullBody.png";
+    const buttImg = "img/butt.png";
+    const yogaImg = "img/yoga.png";
+    const faceImg = "img/face.png";
+    const meditationImg = "img/meditation.png";
+    const quickExsImg = "img/quickExs.png";
+
+    const targetList = [{name: "full body", img: fullBodyImg},
+        {name: "quick exercises", img: quickExsImg},
+        {name: "face", img: faceImg},
+        {name: "yoga", img: yogaImg},
+        {name: "meditation", img: meditationImg}];
+
+    const bodyPart = [{name: "back", img: backImg},
+        {name: "cardio", img: cardioImg},
+        {name: "chest", img: chestImg},
+        {name: "lower arms", img: lowerArmsImg},
+        {name: "lower legs", img: lowerLegsImg},
+        {name: "neck", img: neckImg},
+        {name: "shoulders", img: shouldersImg},
+        {name: "upper arms", img: upperArmsImg},
+        {name: "upper legs", img: upperLegsImg},
+        {name: "waist", img: waistImg}];
+    let code = '';
+    let challengeCode = ' <div class="challenge-list">' + '<div class="topic-title">' + '<h1>challenge</h1>' + '</div>' + '<div class="parent-list">' + '<div class="list">';
     for (let i = 0; i < document.getElementsByClassName('chosen-list')[0].getElementsByClassName('target-card').length; i++) {
-
+        let topic = document.getElementsByClassName('chosen-list')[0].getElementsByClassName('target-card')[i].innerHTML.trim();
+        topic = topic.replace(/\s+/g, ' ');
+        for (let j = 0; j < targetList.length; j++) {
+            if (topic === (targetList[j].name)) {
+                code += createATopicWorkoutList(topic, targetList[j].img, 2);
+                challengeCode += createChallengeCard(topic, 3, targetList[j].img);
+            }
+        }
+        for (let j = 0; j < bodyPart.length; j++) {
+            if (topic === (bodyPart[j].name)) {
+                code += createATopicWorkoutList(topic, bodyPart[j].img, 5);
+                challengeCode += createChallengeCard(topic, 3, bodyPart[j].img);
+            }
+        }
     }
+    challengeCode += '</div></div></div>';
+    return challengeCode + code;
 }
 
-function createChallengeCard() {
-
-}
-
-function createChallengeList() {
-
-}
-
-function createRecentFullCard() {
-
+function addWorkoutList() {
+    document.getElementsByClassName('workouts')[0].innerHTML = createWorkoutList();
 }
 

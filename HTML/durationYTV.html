@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<h1 id="videoId"></h1>
+<h1 id="youtubeTime"></h1>
+<h1 id="duration"></h1>
+
+<script>
+    // form: mm:ss
+    const convertYTTime = (durationString = "") => {
+        const duration = {hours: 0, minutes: 0, seconds: 0};
+        const durationParts = durationString
+            .replace("PT", "")
+            .replace("H", ":")
+            .replace("M", ":")
+            .replace("S", "")
+            .split(":");
+        console.log(durationParts.length);
+        if (durationParts.length === 3) {
+            // duration["hours"] = durationParts[0];
+            duration["minutes"] =  parseInt(durationParts[1]) + parseInt(durationParts[0])*60;
+            duration["seconds"] = durationParts[2];
+        }
+        if (durationParts.length === 2) {
+            duration["minutes"] = durationParts[0];
+            duration["seconds"] = durationParts[1];
+        }
+        if (durationParts.length === 1) {
+            duration["seconds"] = durationParts[0];
+        }
+        if (duration["minutes"] < 10) {
+            if (duration["minutes"] == 0) {
+                duration["minutes"] = "00";
+            } else {
+                duration["minutes"] = "0" + duration["minutes"];
+            }
+        }
+        if (duration["seconds"] < 10) {
+            if (duration["seconds"] == 0) {
+                duration["seconds"] = "00";
+            } else {
+                duration["seconds"] = "0" + duration["seconds"];
+            }
+        }
+        // if (duration["hours"] < 10) {
+        //     if (duration["hours"] == 0) {
+        //         duration["hours"] = "00";
+        //     } else {
+        //         duration["hours"] = "0" + duration["hours"];
+        //     }
+        // }
+        return `${duration.minutes}:${duration.seconds}`;
+    };
+
+    // convert ISO 8601 duration
+    function formatISODate(youtube_time) {
+        var array = youtube_time.match(/(\d+)(?=[MHS])/ig) || [];
+        return array.map(function (item) {
+            if (item.length < 2) return '0' + item;
+            return item;
+        }).join(':');
+    }
+
+    // print video duration
+    function getDurationById(id) {
+        var youtubeUrl = "https://www.googleapis.com/youtube/v3/videos?id=" + id
+            + "&key=AIzaSyDR7ik9IZsLSkp9kOPOVinz9aa2y7ctD48&part=snippet,contentDetails";
+        $.ajax({
+            async: false,
+            type: 'GET',
+            url: youtubeUrl,
+            success: function (data) {
+                var youtube_time = data.items[0].contentDetails.duration;
+                var duration = convertYTTime(youtube_time);
+                setData(id, youtube_time, duration);
+            }
+        });
+    }
+
+    getDurationById("3oSe-IR2QyA");
+
+    // $('iframe').each(function (i) {
+    //     var ifr = $(this);
+    //     var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    //     var match = ifr.attr('src').match(regExp);  // get youtube video id
+    //     if (match && match[2].length === 11) {
+    //         var youtubeUrl = "https://www.googleapis.com/youtube/v3/videos?id=" + match[2]
+    //             + "&key=AIzaSyDR7ik9IZsLSkp9kOPOVinz9aa2y7ctD48&part=snippet,contentDetails";
+    //         $.ajax({
+    //             async: false,
+    //             type: 'GET',
+    //             url: youtubeUrl,
+    //             success: function (data) {
+    //                 var youtube_time = data.items[0].contentDetails.duration;
+    //                 var duration = formatISODate(youtube_time);
+    //                 if (ifr.next().is('.time')) {
+    //                     ifr.next().html(duration);
+    //                 }
+    //             }
+    //         });
+    //     }
+    // });
+
+    function setData(id, youtubeTime, duration) {
+        document.getElementById("videoId").innerHTML = "video id: " + id;
+        document.getElementById("youtubeTime").innerHTML = "youtube time: " + youtubeTime;
+        document.getElementById("duration").innerHTML = "duration: " + duration;
+    }
+
+</script>
+
+</body>
+</html>
